@@ -2,9 +2,9 @@ close all
 clear
 clc
 
-mypath = 'F:/DriveC/Copy/Semester 7/Pattern Recognition/Assignments/Assignment 1/5 Objects';
-mypathSave = 'F:/DriveC/Copy/Semester 7/Pattern Recognition/Assignments/Assignment 1/';
-mypathSaveVar = 'C:/Users/Praneeth A S/Desktop/Final Codes/';
+mypath = 'E:/DriveC/Copy/github.com/Pattern-Recognition/Pattern-Recognition/Assignment 1/5 Objects';
+mypathSave = 'E:/DriveC/Copy/github.com/Pattern-Recognition/Pattern-Recognition/Assignment 1';
+mypathSaveVar = 'C:/Users/Praneeth/Desktop/Final Codes/';
 d = dir(mypath);
 isub = [d(:).isdir]; 
 nameFolds = {d(isub).name}';
@@ -33,6 +33,7 @@ for i=1:sizeDir
     inputLabel(i,init+1:init+sizec) = 1;
     init = init+sizec;
 end
+fprintf('For Loop Ends\n');
 features = [featureVector{1},featureVector{2},featureVector{3},featureVector{4},featureVector{5}];
 mu = mean(features,2);
 [row,col] = size(features);
@@ -50,6 +51,7 @@ end
 % [rowr,colr]=size(reconstructVector);
 
 % METHOD 2
+features=double(features);
 [coeff,score,latent] = princomp(features);
 %XCentre = score*coeff';
 XCentre = score(:,1:100)*coeff(:,1:100)';
@@ -92,6 +94,7 @@ end
 pathSave = strcat(mypathSaveVar,'SavePath.mat');
 save(pathSave, 'mypathSaveVar');
 
+featuresTest=double(featuresTest);
 [coeffTest,scoreTest,latentTest] = princomp(featuresTest);
 %XCentreTest = scoreTest*coeffTest';
 XCentreTest = scoreTest(:,1:50)*coeffTest(:,1:50)';
